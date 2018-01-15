@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.microfocus.ucmdb</groupId>
+    <artifactId>checkcode-tool</artifactId>
+    <version>1.0.5</version>
+    <dependencies>
+        <dependency>
+            <groupId>com.hp.ucmdb.backend</groupId>
+            <artifactId>api-interfaces</artifactId>
+            <version>10.22-231</version>
+        </dependency>
+    </dependencies>
+
+    <properties>
+        <ucmdb.version>10.40-SNAPSHOT</ucmdb.version>
+        <maven.plugin.version>3.2.3</maven.plugin.version>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+
+        <!-- The following are for BAR, please do not change these -->
+        <NEXUS_BASE_URL_SVS>http://cms-nexus.hpeswlab.net:8080/nexus</NEXUS_BASE_URL_SVS>
+        <NEXUS_BASE_URL_SHC>http://cms-nexus.hpeswlab.net:8080/nexus</NEXUS_BASE_URL_SHC>
+        <NEXUS_BASE_URL_YEHUD>http://mydtbld0029.hpeswlab.net:8081/nexus</NEXUS_BASE_URL_YEHUD>
+        <NEXUS_BASE_URL>${NEXUS_BASE_URL_SVS}</NEXUS_BASE_URL>
+        <NEXUS_REPOSITORY>${NEXUS_BASE_URL}/content/groups/cms</NEXUS_REPOSITORY>
+        <DEPLOY_REPOSITORY_REL_SNAPSHOTS>${NEXUS_BASE_URL}/content/repositories/ucmdb-releases</DEPLOY_REPOSITORY_REL_SNAPSHOTS>
+        <DEPLOY_REPOSITORY_SNAPSHOTS>${DEPLOY_REPOSITORY_REL_SNAPSHOTS}</DEPLOY_REPOSITORY_SNAPSHOTS>
+        <DEPLOY_REPOSITORY>${DEPLOY_REPOSITORY_SNAPSHOTS}</DEPLOY_REPOSITORY>
+    </properties>
+    <repositories>
+        <repository>
+            <id>NEXUS-CMS</id>
+            <name>HP SPM Nexus Server: CMS</name>
+            <url>${NEXUS_REPOSITORY}</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+            <layout>default</layout>
+        </repository>
+        <repository>
+            <id>central</id>
+            <url>http://repo1.maven.org/maven2</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+    <distributionManagement>
+        <repository>
+            <id>DEPLOY-CMS</id>
+            <name>HP SPM Nexus Server: CMS: artifacts will be deployed to this server</name>
+            <url>${DEPLOY_REPOSITORY}</url>
+            <uniqueVersion>false</uniqueVersion>
+        </repository>
+    </distributionManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>2.5.4</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>com.microfocus.checkcodetool.CheckCode</mainClass>
+                        </manifest>
+                    </archive>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

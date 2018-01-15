@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.hp.ucmdb.backend:api-interfaces:10.22-231">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/hp/ucmdb/backend/api-interfaces/10.22-231/api-interfaces-10.22-231.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/hp/ucmdb/backend/api-interfaces/10.22-231/api-interfaces-10.22-231-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/hp/ucmdb/backend/api-interfaces/10.22-231/api-interfaces-10.22-231-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
